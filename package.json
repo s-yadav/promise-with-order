@@ -1,0 +1,33 @@
+{
+  "name": "promise-with-order",
+  "version": "0.1.0",
+  "description": "Wrap promise with a promise which resolves in sequential order.",
+  "main": "dist/PromiseWithOrder.js",
+  "umd:main": "dist/PromiseWithOrder.umd.js",
+  "module": "dist/PromiseWithOrder.mjs",
+  "source": "src/PromiseWithOrder.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s-yadav/promise-with-order"
+  },
+  "bugs": {
+    "mail": "sudhanshuyadav2@gmail.com",
+    "url": "https://github.com/s-yadav/promise-with-order/issues"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "microbundle"
+  },
+  "author": "Sudhanshu Yadav",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "jest": "^23.6.0",
+    "microbundle": "^0.6.0"
+  }
+}
