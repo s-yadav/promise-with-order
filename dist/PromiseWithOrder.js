@@ -1,2 +1,1 @@
-var t=function(){this.promises=[]};t.prototype.wrap=function(t,o){var e=this.promises,r=t;o.allowReject&&(r=new Promise(function(o){t.then(o,o)}));var n=Promise.all(e.concat([t])).then(function(t){return t.pop()});return e.push(r),n},t.prototype.reset=function(){this.promise=[]},module.exports=t;
-//# sourceMappingURL=PromiseWithOrder.js.map
+var t=function(){this.lastPromise=Promise.resolve()};t.prototype.wrap=function(t,e){void 0===e&&(e={});var n=this.lastPromise,o=new Promise(function(e,o){t.catch(function(){return"do nothing"}),n.then(function(){return t}).then(e,o)});return this.lastPromise=e.allowReject?new Promise(function(e,o){n.then(function(){return t.then(e,e)}).then(e,o)}):o,o},t.prototype.reset=function(){this.lastPromise=Promise.resolve()},module.exports=t;

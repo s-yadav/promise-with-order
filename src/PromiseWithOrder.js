@@ -1,27 +1,31 @@
 export default class PromiseWithOrder {
   constructor() {
-    this.promises = [];
+    this.lastPromise = Promise.resolve();
   }
 
-  wrap(promise, config) {
-    const { promises } = this;
-    let promiseToTrack = promise;
+  wrap(promise, config = {}) {
+    const { lastPromise } = this;
+    const orderedPromise = new Promise((resolve, reject) => {
+      // catch promise so it does not throw unhandled rejection on original promise
+      promise.catch(() => 'do nothing');
 
+      // wait for last wrapped promise to get resolved and then resolve
+      lastPromise.then(() => promise).then(resolve, reject);
+    });
+
+    // if allowReject is set true, assume current promise will always resolve for the next chained promise
     if (config.allowReject) {
-      promiseToTrack = new Promise((resolve) => {
-        promise.then(resolve, resolve);
+      this.lastPromise = new Promise((resolve, reject) => {
+        lastPromise.then(() => promise.then(resolve, resolve)).then(resolve, reject);
       });
+    } else {
+      this.lastPromise = orderedPromise;
     }
-
-    const orderedPromise = Promise.all([...promises, promise]).then(values => values.pop());
-
-    // track older promise
-    promises.push(promiseToTrack);
 
     return orderedPromise;
   }
 
   reset() {
-    this.promise = [];
+    this.lastPromise = Promise.resolve();
   }
 }

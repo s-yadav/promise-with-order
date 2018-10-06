@@ -1,7 +1,7 @@
 {
   "name": "promise-with-order",
   "version": "0.1.0",
-  "description": "Wrap promise with a promise which resolves in sequential order.",
+  "description": "Micro module to resolve multiple promises in order.",
   "main": "dist/PromiseWithOrder.js",
   "umd:main": "dist/PromiseWithOrder.umd.js",
   "module": "dist/PromiseWithOrder.mjs",
@@ -14,20 +14,28 @@
     "mail": "sudhanshuyadav2@gmail.com",
     "url": "https://github.com/s-yadav/promise-with-order/issues"
   },
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "test": "jest",
-    "build": "microbundle"
+    "test": "jest --watch",
+    "build": "microbundle --sourcemap false"
   },
+  "keywords": [
+    "sequential-promise",
+    "ordered-promise",
+    "order",
+    "sequence",
+    "promise"
+  ],
   "author": "Sudhanshu Yadav",
   "license": "MIT",
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "babel-preset-env": "^1.7.0",
     "eslint": "^5.6.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "jest": "^23.6.0",
-    "microbundle": "^0.6.0"
+    "microbundle": "^0.6.0",
+    "regenerator-runtime": "^0.12.1"
   }
 }
